@@ -118,7 +118,7 @@ class NoHooksSysAdminTest(SysAdminFixture):
         client = SysAdminClient("127.0.0.1", 4000)
         client.set("wireless.wl0.psk", "password")
         resp = client.set("wireless.wl0.psk", 5)
-        self.assertEqual(sysadminctl_pb2.SUCCESS, resp.status)
+        self.assertEqual(sysadminctl_pb2.SUCCESS_KEY_CREATED, resp.status)
         client.commit()
         resp = client.set("wireless.wl0.psk", "password")
         self.assertEqual(sysadminctl_pb2.TYPE_MISMATCH, resp.status)
@@ -631,7 +631,7 @@ class LazySysAdminTest(SysAdminFixture):
         counter = 0
         for key in s:
             counter += 1
-        self.assertEqual(11, counter)
+        self.assertEqual(4, counter)
         all_values = [
             "192.168.1.1",
             "192.168.1.100",
