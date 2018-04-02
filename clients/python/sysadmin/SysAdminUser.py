@@ -31,8 +31,7 @@ def condense(uncondensed):
             else:
                 partialDict[keys[0]] = value
         else:
-            dict_instance = isinstance(partialDict[keys[0]], dict)
-            if keys[0] in partialDict and not dict_instance:
+            if keys[0] in partialDict and not isinstance(partialDict[keys[0]], dict):
                 partialDict["{" + keys[0] + "}"] = partialDict[keys[0]]
                 del partialDict[keys[0]]
             if keys[0] not in partialDict:
